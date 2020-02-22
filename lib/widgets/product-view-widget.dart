@@ -40,7 +40,6 @@ class ProductViewWidget extends StatelessWidget {
               child: Image.asset(
                 product.productImage,
                 fit: BoxFit.cover,
-                width: mediaQuery.size.width,
                 height: mediaQuery.size.height,
               ),
             ),

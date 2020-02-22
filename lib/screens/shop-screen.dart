@@ -20,40 +20,36 @@ class ShopScreenState extends State<ShopScreen> {
         ? productsData.favoriteProducts
         : productsData.products;
     return Scaffold(
-      appBar: AppBar(
-        actions: <Widget>[
-          FlatButton(
-            child: Icon(
-              Icons.favorite,
-              color: Colors.white,
+        appBar: AppBar(
+          actions: <Widget>[
+            FlatButton(
+              child: Icon(
+                Icons.favorite,
+                color: Colors.white,
+              ),
+              onPressed: () => {
+                setState(() {
+                  showFavoriteFruits = !showFavoriteFruits;
+                })
+              },
             ),
-            onPressed: () => {
-              setState(() {
-                showFavoriteFruits = !showFavoriteFruits;
-              })
-            },
-          ),
-          Consumer<Cart>(
-            builder: (_, cart, ch) => Badge(
-              child: ch,
-              value: cart.itemCount.toString(),
-            ),
-            child: IconButton(
-              icon: Icon(Icons.shopping_cart),
-              onPressed: () => {},
-            ),
-          )
-        ],
-      ),
-      body: GridView.builder(
-        itemCount: products.length,
-        itemBuilder: (context, i) => ChangeNotifierProvider.value(
-          value: products[i],
-          child: ProductViewWidget(),
+            Consumer<Cart>(
+              builder: (_, cart, ch) => Badge(
+                child: ch,
+                value: cart.itemCount.toString(),
+              ),
+              child: IconButton(
+                icon: Icon(Icons.shopping_cart),
+                onPressed: () => {},
+              ),
+            )
+          ],
         ),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, childAspectRatio: 1.5, crossAxisSpacing: 3),
-      ),
-    );
+        body: ListView.builder(
+            itemCount: products.length,
+            itemBuilder: (context, i) => ChangeNotifierProvider.value(
+                  value: products[i],
+                  child: ProductViewWidget(),
+                )));
   }
 }

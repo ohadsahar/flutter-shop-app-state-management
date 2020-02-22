@@ -11,7 +11,6 @@ class ProductViewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final product = Provider.of<ProductModel>(context, listen: false);
     final cart = Provider.of<Cart>(context, listen: false);
-    print('builds');
     return GridTile(
         child: Image.asset(product.productImage),
         footer: GridTileBar(
